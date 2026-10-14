@@ -1,0 +1,37 @@
+[project]
+name = "eip"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Prashant yadav", email = "prashant.yadav567@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.20.0",
+    "asyncpg>=0.32.0",
+    "fastapi>=0.143.0",
+    "pgvector>=0.5.1",
+    "pydantic-settings>=2.15.0",
+    "redis>=8.1.0",
+    "sqlalchemy[asyncio]>=2.1.4",
+    "structlog>=26.1.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[project.scripts]
+eip = "eip:main"
+
+[build-system]
+requires = ["uv_build>=0.13.1,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "mypy>=2.4.0",
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.17.0",
+]
