@@ -224,7 +224,7 @@ wheels = [
 
 [[package]]
 name = "eip"
-version = "0.1.0"
+version = "0.13.1"
 source = { editable = "." }
 dependencies = [
     { name = "alembic" },
