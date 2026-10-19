@@ -1,6 +1,6 @@
 [project]
 name = "eip"
-version = "0.1.0"
+version = "0.13.1"
 description = "AI-powered engineering delivery intelligence in Microsoft Teams"
 readme = "README.md"
 authors = [
