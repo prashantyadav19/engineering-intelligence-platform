@@ -1,11 +1,14 @@
 import asyncio
 from logging.config import fileConfig
 
+from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from alembic import context
+import eip.db.models  # noqa: F401
+from eip.core.config import get_settings
+from eip.db.base import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -16,9 +19,6 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-import eip.db.models  # noqa: F401
-from eip.core.config import get_settings
-from eip.db.base import Base
 
 config.set_main_option("sqlalchemy.url", str(get_settings().database_url))
 target_metadata = Base.metadata

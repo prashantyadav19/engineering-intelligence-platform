@@ -74,12 +74,8 @@ class PullRequest(TimestampMixin, Base):
 class IssuePullRequest(Base):
     __tablename__ = "issue_pull_requests"
 
-    issue_id: Mapped[int] = mapped_column(
-        ForeignKey("issues.id", ondelete="CASCADE"), primary_key=True
-    )
-    pull_request_id: Mapped[int] = mapped_column(
-        ForeignKey("pull_requests.id", ondelete="CASCADE"), primary_key=True
-    )
+    issue_id: Mapped[int] = mapped_column(ForeignKey("issues.id", ondelete="CASCADE"), primary_key=True)
+    pull_request_id: Mapped[int] = mapped_column(ForeignKey("pull_requests.id", ondelete="CASCADE"), primary_key=True)
 
 
 class DocChunk(TimestampMixin, Base):
