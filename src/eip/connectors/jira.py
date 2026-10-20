@@ -70,3 +70,11 @@ class JiraClient:
             if page.get("isLast", True):
                 return
             start_at += len(page["values"])
+
+    async def issue(self, issue_key: str, extra_fields: list[str]) -> dict[str, Any]:
+        data: dict[str, Any] = await get_json(
+            self._client,
+            f"/rest/api/3/issue/{issue_key}",
+            {"fields": ",".join(ISSUE_FIELDS + extra_fields)},
+        )
+        return data
