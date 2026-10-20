@@ -4,7 +4,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 
 from eip import __version__
-from eip.api.routes import health
+from eip.api.routes import health, webhooks
 from eip.core.config import get_settings
 from eip.core.redis import redis_client
 from eip.db.session import engine
@@ -27,6 +27,7 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
     )
     app.include_router(health.router)
+    app.include_router(webhooks.router)
     return app
 
 
