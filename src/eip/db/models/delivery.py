@@ -42,6 +42,7 @@ class Issue(TimestampMixin, Base):
     story_points: Mapped[float | None]
     assignee: Mapped[str | None] = mapped_column(String(255))
     resolved_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    fix_version: Mapped[str | None] = mapped_column(String(64), index=True)
 
 
 class IssueEvent(Base):

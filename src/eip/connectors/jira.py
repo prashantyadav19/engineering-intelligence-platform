@@ -5,7 +5,7 @@ import httpx
 
 from eip.connectors.http import get_json
 
-ISSUE_FIELDS = ["summary", "status", "issuetype", "assignee", "resolutiondate", "project"]
+ISSUE_FIELDS = ["summary", "status", "issuetype", "assignee", "resolutiondate", "project", "fixVersions"]
 
 
 class JiraClient:

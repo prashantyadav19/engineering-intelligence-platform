@@ -75,6 +75,8 @@ async def ingest_issue(
             sprint_id = stored_id
 
     assignee = fields.get("assignee") or {}
+    versions: list[dict[str, Any]] = fields.get("fixVersions") or []
+    fix_version = versions[0]["name"] if versions else None
     stmt = insert(Issue).values(
         key=issue["key"],
         project_id=project_id,
@@ -85,6 +87,7 @@ async def ingest_issue(
         story_points=fields.get(points_field),
         assignee=assignee.get("displayName"),
         resolved_at=parse_datetime(fields.get("resolutiondate")),
+        fix_version=fix_version,
     )
     stmt = stmt.on_conflict_do_update(
         index_elements=[Issue.key],
@@ -97,6 +100,7 @@ async def ingest_issue(
             "assignee": stmt.excluded.assignee,
             "resolved_at": stmt.excluded.resolved_at,
             "updated_at": func.now(),
+            "fix_version": stmt.excluded.fix_version,
         },
     )
     issue_id: int = (await session.execute(stmt.returning(Issue.id))).scalar_one()
